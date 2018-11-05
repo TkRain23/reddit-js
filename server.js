@@ -11,8 +11,6 @@ app.use(expressValidator()); // Add after body parser initialization!
 require('./controllers/posts.js')(app);
 require('./data/reddit-db')
 
-
-
 //server.js
 var mongoose = require('mongoose');
 // Mongoose Connection
@@ -21,7 +19,6 @@ mongoose.connect(
 	mongoUri, { useNewUrlParser: true }
 );
 mongoose.set('debug', true);
-
 
 app.set('view engine', 'pug')
 

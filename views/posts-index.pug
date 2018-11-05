@@ -6,5 +6,11 @@ block content
       head
         title= title
       body
-        h1= "go fuck yourself"
+        h1= "please help me"
         #{posts}
+        div.row
+            div.col-sm-8.col-sm-offset-2  
+                each post in posts
+                    li.list-group-item
+                        div.lead() #{post.title}
+                        a(href="#{post.url}" target ="_blank") #{post.url}

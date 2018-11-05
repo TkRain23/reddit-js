@@ -3,6 +3,7 @@ const app = express()
 const port = 3000
 const bodyParser = require('body-parser');
 const expressValidator = require('express-validator')
+const Post = require('./models/post')
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -23,7 +24,13 @@ mongoose.set('debug', true);
 app.set('view engine', 'pug')
 
 app.get('/', function (req, res) {
-  res.render('index', { title: 'Hey', message: 'Hello there!' })
+	Post.find({})
+		.then(posts => {
+			res.render("posts-index", {posts});
+		})
+		.catch(err => {
+			console.log(err.message);
+		});
 })
 
 app.get('/posts/new', function (req,res) {

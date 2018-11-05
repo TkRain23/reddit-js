@@ -2,10 +2,11 @@ const express = require('express')
 const app = express()
 const port = 3000
 const bodyParser = require('body-parser');
+const expressValidator = require('express-validator')
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-// app.use(expressValidator()); // Add after body parser initialization!
+app.use(expressValidator()); // Add after body parser initialization!
 
 require('./controllers/posts.js')(app);
 require('./data/reddit-db')

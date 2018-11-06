@@ -1,0 +1,12 @@
+extends layout
+
+block content
+    
+    html
+      head
+        title= title
+      body
+        div.row
+            div.col-sm-6.col-sm-offset-3
+                a.lead(href=post.url) #{post.title}
+                p #{post.summary}

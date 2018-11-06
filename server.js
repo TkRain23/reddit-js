@@ -5,21 +5,13 @@ const bodyParser = require('body-parser');
 const expressValidator = require('express-validator')
 const Post = require('./models/post')
 
+require('./data/reddit-db')
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(expressValidator()); // Add after body parser initialization!
 
 require('./controllers/posts.js')(app);
-require('./data/reddit-db')
-
-//server.js
-var mongoose = require('mongoose');
-// Mongoose Connection
-const mongoUri = process.env.MONGODB_URI || "mongodb://localhost:27017/reddit-clone";
-mongoose.connect(
-	mongoUri, { useNewUrlParser: true }
-);
-mongoose.set('debug', true);
 
 app.set('view engine', 'pug')
 

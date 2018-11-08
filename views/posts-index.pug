@@ -15,4 +15,5 @@ block content
                         div.lead()
                             a(href="/post/" + post._id) #{post.title}
                         a(href=post.url target ="_blank") #{post.url}
-                        div.text-right #{post.subreddit}
+                        div.text-right
+                            a(href="/n/" + post.subreddit) #{post.subreddit}

@@ -8,6 +8,10 @@ const PostSchema = new Schema({
     updatedAt: {
         type: Date
     },
+    subreddit: {
+        type: [String], // array of strings to allow for multiple subreddits?
+        required: true
+    },
     title: {
         type: String,
         required: true

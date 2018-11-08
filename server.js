@@ -29,4 +29,15 @@ app.get('/posts/new', function (req,res) {
     res.render('posts-new')
 })
 
+// SUBREDDIT
+app.get("/n/:subreddit", function(req, res) {
+	Post.find({ subreddit: req.params.subreddit })
+	.then(posts => {
+		res.render("posts-index", { posts });
+	})
+	.catch(err => {
+		console.log(err);
+	});
+});
+
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))

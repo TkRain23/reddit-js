@@ -1,18 +1,24 @@
 const express = require('express')
+var cookieParser = require('cookie-parser');
+const jwt = require('jsonwebtoken');
 const app = express()
 const port = 3000
 const bodyParser = require('body-parser');
 const expressValidator = require('express-validator')
 const Post = require('./models/post')
 
+require('dotenv').config()
+
 require('./data/reddit-db')
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(expressValidator()); // Add after body parser initialization!
+app.use(cookieParser());
 
 require('./controllers/posts.js')(app);
 require('./controllers/comments-controller.js')(app);
+require('./controllers/auth.js')(app);
 
 app.set('view engine', 'pug')
 

@@ -11,7 +11,7 @@ module.exports = function(app) {
         comment
             .save()
             .then(comment => {
-                return Post.findById(req.params.postId);
+                return Post.findOne({_id: req.params.postId});
             })
             .then(post => {
                 post.comments.unshift(comment);

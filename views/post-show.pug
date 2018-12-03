@@ -11,13 +11,13 @@ block content
                 a.lead(href=post.url) #{post.title}
                 p #{post.summary}
                 
-                form(action="/posts/{{post._id}}/comments", method="POST")
-                    textarea.form-control(name = "content", placeholder="Comment")
+                form(action="/posts/" + post._id + "/comments", method="POST")
+                    textarea.form-control(name="content", placeholder="Comment")
                     div.text-right
                         button(type="submit") Save
                         
                 each val in post.comments
-                    p val
+                    p= val.content
                         
                 //- {{#each post.comments}}
                 //-     {{this}}

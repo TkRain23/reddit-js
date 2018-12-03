@@ -9,7 +9,7 @@ const PostSchema = new Schema({
         type: Date
     },
     subreddit: {
-        type: [String], // array of strings to allow for multiple subreddits?
+        type: String, // array of strings to allow for multiple subreddits?
         required: true
     },
     title: {

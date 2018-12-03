@@ -12,6 +12,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(expressValidator()); // Add after body parser initialization!
 
 require('./controllers/posts.js')(app);
+require('./controllers/comments-controller.js')(app);
 
 app.set('view engine', 'pug')
 

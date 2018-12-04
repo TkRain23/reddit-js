@@ -9,10 +9,12 @@ block content
         div.row
             div.col-sm-6.col-sm-offset-3
                 a.lead(href=post.url) #{post.title}
-                p #{post.summary}
+                p Summary: #{post.summary}
+                p Author: #{post.author.username}
                 
                 form(action="/posts/" + post._id + "/comments", method="POST")
                     textarea.form-control(name="content", placeholder="Comment")
+                    input.form-control(name="author", type="hidden", value=currentUser._id)
                     div.text-right
                         button(type="submit") Save
                         

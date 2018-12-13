@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+
 const PostSchema = new Schema({
     createdAt: {
         type: Date
@@ -24,7 +25,7 @@ const PostSchema = new Schema({
         type: String,
         required: true
     },
-    author : {
+    author: {
         type: Schema.Types.ObjectId,
         ref: "User",
         required: true

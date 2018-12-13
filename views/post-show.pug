@@ -1,5 +1,13 @@
 extends layout
 
+mixin generateComment(comment)
+    div.commentCard()
+        p= comment.content
+        a(href='/profiles/' + comment.author.username)= comment.author.username
+        a(href="/posts/" + post._id +"/comments/" + comment._id + "/replies/new") Reply
+        each reply in comment.replies
+            +generateComment(reply)
+
 block content
     
     html
@@ -7,22 +15,19 @@ block content
         title= title
       body
         div.row
-            div.col-sm-6.col-sm-offset-3
-                a.lead(href=post.url) #{post.title}
-                p Summary: #{post.summary}
-                p Author: #{post.author.username}
-                
-                form(action="/posts/" + post._id + "/comments", method="POST")
-                    textarea.form-control(name="content", placeholder="Comment")
-                    input.form-control(name="author", type="hidden", value=currentUser._id)
-                    div.text-right
-                        button(type="submit") Save
-                        
-                each val in post.comments
-                    p= val.content
-                        
-                //- {{#each post.comments}}
-                //-     {{this}}
-                //- {{/each}}
+            
+            div.col-sm-6.offset-sm-3
+              a.lead(href=post.url)= post.title
+              p()= post.summary
+              a(href='/profiles/' + post.author.username) 
+                p()= post.author.username
+              form(action='/posts/' + post._id + '/comments', method='POST')
+                input(type="hidden", name="author", value=currentUser._id)
+                textarea.form-control(name='content', placeholder='Comment')
+                div.text-right()
+                  button(type='submit') Save
+              div#commentContainer()
+                each comment in post.comments
+                  +generateComment(comment)
 
                 

@@ -17,3 +17,9 @@ block content
                         a(href=post.url target ="_blank") #{post.url}
                         div.text-right
                             a(href="/n/" + post.subreddit) #{post.subreddit}
+                        
+                        form.vote-up(data-id= post._id)
+                            button(type="submit") Vote Up
+                        form.vote-down(data-id= post._id)
+                            button(type="submit") Vote Down
+                            

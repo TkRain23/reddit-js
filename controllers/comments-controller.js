@@ -12,7 +12,9 @@ module.exports = function(app) {
         comment
             .save()
             .then(comment => {
-                return Post.findOne({_id: req.params.postId});
+                return Post.findOne({
+                    _id: req.params.postId
+                });
             })
             .then(post => {
                 post.comments.unshift(comment);
@@ -25,4 +27,17 @@ module.exports = function(app) {
                 console.log(err);
             });
     });
+
+    app.post("/posts/:postId/comments/:commentId", function(req, res) {
+        Comment
+            .create(req.body)
+            .then(newComment => {
+                Comment.findOne({_id:req.params.commentId}).then(parentComment => {
+                    parentComment.replies.push(newComment._id)
+                    parentComment.save()
+                    console.log(req.params.postId)
+                    res.redirect(`/post/${req.params.postId}`)
+                })
+            })
+    })
 };
